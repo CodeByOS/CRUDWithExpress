@@ -16,5 +16,20 @@ const getAllGroupOneStudents = async (req, res) => {
   }
 };
 
+//* Add A Student To Group One
+const addStudentToGroupOne = async (req, res) => {
+  try {
+    const student = await GroupOne.create(req.body);
+    if(!student) res.status(400).json({ message: "Failed to Create Student..!" });
 
-module.exports = getAllGroupOneStudents;
+    res.status(200).json({ message: "Student Created Successfuly..!", student });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+
+module.exports = {
+  getAllGroupOneStudents,
+  addStudentToGroupOne
+};
