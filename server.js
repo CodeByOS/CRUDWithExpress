@@ -8,14 +8,15 @@ const app = express();
 app.use(bodyParser.json());
 
 //* Define Route
-
+const groupOneRoutes = require("./routes/groupOneRoutes");
+app.use("/api/group-one", groupOneRoutes);
 
 
 //* Start the server
 connectDB()
     .then(() => {
-        const PORT = process.env.PORT;
-        app.listen(() => {
+        const PORT = process.env.PORT || 3001;
+        app.listen(PORT, () => {
             console.log(`The server is running on Port ${PORT}`)
         })
     })
