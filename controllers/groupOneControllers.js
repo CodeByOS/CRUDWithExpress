@@ -41,9 +41,23 @@ const getStudentByID = async (req, res) => {
   }
 }
 
+//* Update Student BY ID
+const updateStudentInfo = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const student = await GroupOne.findByIdAndUpdate(id, req.body);
+    if(!student) res.status(400).json({ message: "Failed to update The student Informations..!" });
+
+    res.status(200).json({ message: "Student Updated Successfuly.." });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
 
 module.exports = {
   getAllGroupOneStudents,
   addStudentToGroupOne,
-  getStudentByID
+  getStudentByID,
+  updateStudentInfo
 };
