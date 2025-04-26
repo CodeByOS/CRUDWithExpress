@@ -54,10 +54,24 @@ const updateStudentInfo = async (req, res) => {
   }
 }
 
+//* GET Student By ID And Delete it
+const deleteStudentByID = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const student = await GroupOne.findByIdAndDelete(id);
+    if(!student) res.status(400).json({ message: "Failed to Delete the Student..!" });
+
+    res.status(200).json({ message: "Student Deleted Successfuly.." });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
 
 module.exports = {
   getAllGroupOneStudents,
   addStudentToGroupOne,
   getStudentByID,
-  updateStudentInfo
+  updateStudentInfo,
+  deleteStudentByID
 };
