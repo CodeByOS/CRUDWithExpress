@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { getAllGroupOneStudents, addStudentToGroupOne }  = require("../controllers/groupOneControllers");
+const { getAllGroupOneStudents, addStudentToGroupOne, getStudentByID }  = require("../controllers/groupOneControllers");
 
 
 router.get("/", getAllGroupOneStudents);
 router.post("/", addStudentToGroupOne);
-// router.get("/:id", getStudentByID);
+router.get("/:id", getStudentByID);
 // router.patch("/:id", updateStudentInfo);
 // router.delete("/:id", deleteStudentByID);
 

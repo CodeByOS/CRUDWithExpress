@@ -28,8 +28,22 @@ const addStudentToGroupOne = async (req, res) => {
   }
 }
 
+//* Get student By ID
+const getStudentByID = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const student = await GroupOne.findById(id);
+    if(!student) res.status(400).json({ message: "Cannot Found This Student..!" });
+
+    res.status(200).json(student);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
 
 module.exports = {
   getAllGroupOneStudents,
-  addStudentToGroupOne
+  addStudentToGroupOne,
+  getStudentByID
 };
